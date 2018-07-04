@@ -1,0 +1,40 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "toDo application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NecroSith/todo_app.git"
+  },
+  "keywords": [
+    "todo",
+    "jquery",
+    "gulp",
+    "less",
+    "pug"
+  ],
+  "author": "Yan Pustynnyy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NecroSith/todo_app/issues"
+  },
+  "homepage": "https://github.com/NecroSith/todo_app#readme",
+  "dependencies": {
+    "browser-sync": "^2.24.5",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-cli": "^2.0.1",
+    "gulp-less": "^3.5.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.0"
+  },
+  "devDependencies": {
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.0",
+    "run-sequence": "^2.2.1"
+  }
+}
