@@ -5,7 +5,7 @@
 var gulp = require('gulp'),
 	less = require('gulp-less'),
 	// sass = require('gulp-sass'),					// Uncomment this if you use SCSS
-	browserSync = require('browser-sync').create();
+	browserSync = require('browser-sync').create(),
 	notify = require('gulp-notify'), 				// For error messaging in console
 	autoprefixer = require('gulp-autoprefixer'),
 	sourcemaps = require('gulp-sourcemaps'),
@@ -13,18 +13,7 @@ var gulp = require('gulp'),
 	clean = require('gulp-clean'),
 	uglify = require('gulp-uglify'),
 	sequence = require('run-sequence'),
-	pug = require('pug');
-
-
-// Watch over all the important folders and refresh the page if changes were made
-gulp.task('server',['less'], function() {
-    browserSync.init({
-    	server: { baseDir: './build/'};
-    })
-    gulp.watch('src/less/**/*.less', ['less']);
-    gulp.watch('src/js/**/*.js').on('change', browserSync.reload);
-    gulp.watch('src/**/*.html').on('change', browserSync.reload);
-});
+	pug = require('gulp-pug');
 
 
 // Watch over LESS files and refresh the page if changes were made
@@ -74,7 +63,7 @@ gulp.task('less', function() {
 
 // Delete build directory
 gulp.task('clean:build', function() {
-    return gulp.src('build/', {read: false})
+    return gulp.src('.build', {read: false})
     	.pipe(clean());
 });
 
@@ -89,7 +78,7 @@ gulp.task('pug', function() {
     				message: err.message
     			}
     		})
-    	})
+    	}))
     	.pipe(pug({
     		pretty: true
     	}))
@@ -99,23 +88,36 @@ gulp.task('pug', function() {
 
 // Copy js files from source directory to build
 gulp.task('copy:js', function() {
-    return gulp.src('src/js/**.js')
-    	.pipe(gulp.dest('build/js'))
+    return gulp.src('src/js/**/*.js')
+    	.pipe(gulp.dest('build/js/'))
     	.pipe(browserSync.stream());
 });
 
 // Copy libraries from source directory to build
 gulp.task('copy:lib', function() {
-    return gulp.src('src/lib/**.*')
-    	.pipe(gulp.dest('build/lib'))
+    return gulp.src('src/lib/**/*.*')
+    	.pipe(gulp.dest('build/lib/'))
     	.pipe(browserSync.stream());
 });
 
 // Copy images from source directory to build
 gulp.task('copy:img', function() {
     return gulp.src('src/img/**.*')
-    	.pipe(gulp.dest('build/img'))
+    	.pipe(gulp.dest('build/img/'))
     	.pipe(browserSync.stream());
+});
+
+// Watch over all the important folders and refresh the page if changes were made
+gulp.task('server',['less'], function() {
+    browserSync.init({
+        server: { baseDir: 'build/'}
+    })
+    gulp.watch('src/less/**/*.less', ['less']);
+    gulp.watch('src/js/**/*.js', ['copy:js']);
+    gulp.watch('src/lib/**/*.*', ['copy:lib']);
+    gulp.watch('src/img/**/*.*', ['copy:img']);
+    // gulp.watch('src/**/*.html').on('change', browserSync.reload);
+    gulp.watch('src/**/*.pug', ['pug']);
 });
 
 
@@ -124,7 +126,7 @@ gulp.task('default', function(callback) {
     	'clean:build', 
     	['less', 'pug', 'copy:lib', 'copy:js', 'copy:img'],
     	'server',
-    	callback);
+    	callback)
 });
 
 

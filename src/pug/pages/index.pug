@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+	meta(charset="UTF-8")
+	title ToDo application
+	link(rel="stylesheet", href="lib/bootstrap/dist/css/bootstrap.css")
+	link(rel="stylesheet", href="css/main.css")
+body
+	.container
+		.display-4 ToDo application
+		.display-7 Your plan list
+
+		.alert.alert-danger
+			| Some error occured :(
+
+		.alert.alert-warning
+			| Attention!
+
+		.alert.alert-success
+			| Task added sucessfully!
+
+		nav.main-menu.card-header
+			ul.main-menu__list.nav.nav-tabs.card-header-tabs
+				li.menu__list--item.nav-item
+					a(href="#").nav-link.active All tasks and goals
+				li.menu__list--item.nav-item
+					a(href="#").nav-link Potential 
+				li.menu__list--item.nav-item
+					a(href="#").nav-link Declined tasks
+				li.menu__list--item.nav-item
+					a(href="#").nav-link Add a task
+
+		.card.bg-light
+			.card-header Add a task
+			.card-body
+				form
+					.form-group
+						input(type="text" class="form-control" id="addNewTask" placeholder="Enter the task" required)
+						small.card-text.pl-2.d-block
+							| Describe what you are planning to do, when you plan to do it and what result you expect
+						button.mt-3.ml-2.btn.btn-primary(data-action="add-task") Add task!
+					
+		.card
+			ul.list-group.list-group-flush
+				li.list-group-item.d-flex.justify-content-between.row
+					span.col-sm-7
+						| Test task 1
+						| text  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus at ex porro tempore esse impedit veniam nemo iusto perferendis sapiente laboriosam, necessitatibus in accusamus ducimus molestias. Id rem similique, voluptatum?
+						a(href="#") Link
+					.button-block.col-sm-5
+						button.btn.btn-success(data-action="task-done") Task complete!
+						button.btn.btn-info(data-action="archive-task") Move to potential
+						button.btn.btn-danger(data-action="delete-task") Decline task :(
+				li.list-group-item.d-flex.justify-content-between
+					span
+						| Test task 1
+						| text 
+						a(href="#") Link
+					.button-block
+						button.btn.btn-success(data-action="task-done") Task complete!
+						button.btn.btn-info(data-action="archive-task") Move to potential
+						button.btn.btn-danger(data-action="delete-task") Decline task :(
+				li.list-group-item.d-flex.justify-content-between
+					span
+						| Test task 1
+						| text 
+						a(href="#") Link
+					.button-block
+						button.btn.btn-success(data-action="task-done") Task complete!
+						button.btn.btn-info(data-action="archive-task") Move to potential
+						button.btn.btn-danger(data-action="delete-task") Decline task :(
+				li.list-group-item.d-flex.justify-content-between
+					span
+						| Test task 1
+						| text 
+						a(href="#") Link
+					.button-block
+						button.btn.btn-success(data-action="task-done") Task complete!
+						button.btn.btn-info(data-action="archive-task") Move to potential
+						button.btn.btn-danger(data-action="delete-task") Decline task :(
+
+	
